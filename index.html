@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Word Scramble Game</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Sözü Təxmin Et</h2>
+      <div class="content">
+        <p class="word"></p>
+        <div class="details">
+          <p class="hint">İpucu: <span></span></p>
+          <p class="time">
+            Qalan vaxt: <span><b>30</b>s</span>
+          </p>
+        </div>
+        <input
+          type="text"
+          spellcheck="false"
+          placeholder="Doğru söz daxil et"
+        />
+        <div class="buttons">
+          <button class="refresh-word">Sözü Yenilə</button>
+          <button class="check-word">Sözü Yoxla</button>
+        </div>
+      </div>
+    </div>
+    <div class="backdrop">
+      <div class="modal">
+        <div class="modal-content">Modal Content</div>
+        <button class="close-btn">&times;</button>
+      </div>
+    </div>
+
+    <script src="script/words.js"></script>
+    <script src="script/script.js"></script>
+  </body>
+</html>
