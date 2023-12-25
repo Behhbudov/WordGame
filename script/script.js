@@ -29,8 +29,6 @@ const initTimer = (maxTime) => {
       clearInterval(timer);
       return initGame();
     }
-    // backdrop.style.visibility = "visible";
-    // modalContent.innerText = `Vaxt bitdi! ${correctWord.toUpperCase()} was the correct word`;
     initGame();
   }, 1000);
 };
@@ -57,18 +55,15 @@ const checkWord = () => {
   if (!userWord) {
     backdrop.style.visibility = "visible";
     modalContent.innerText = "Yoxlamaq istədiyin sözü daxil et!";
-    // return alert("Please enter the word to check!");
   }
   if (userWord !== correctWord) {
     backdrop.style.visibility = "visible";
     modalContent.innerText = `Oops! ${userWord.toUpperCase()} doğru söz deyil`;
     return;
-    // return alert(`Oops! ${userWord.toUpperCase()} is not a correct word`);
   } else {
     backdrop.style.visibility = "visible";
     modalContent.innerText = `Təbriklər! <b>${userWord.toUpperCase()}</b> doğru sözdür`;
     clearInterval(timer);
-    // alert(`Congrats! ${userWord.toUpperCase()} is the correct word`);
   }
   initGame();
 };
