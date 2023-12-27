@@ -64,24 +64,50 @@ const checkWord = () => {
     backdrop.style.visibility = "visible";
     modalContent.innerText = `Təbriklər! ${userWord.toUpperCase()} doğru sözdür`;
     clearInterval(timer);
+
+    document.addEventListener('keypress', function(event) {
+      // Check if the pressed key is Enter (key code 13 or 'Enter') and if the focus is on the checkBtn
+      if ((event.key === 'Enter' || event.keyCode === 13)) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+          window.location.reload();
+      }
+    });
   }
   initGame();
 };
 
 refreshBtn.addEventListener("click", initGame);
-checkBtn.addEventListener('click', checkWord);
-
-// Add an event listener to the document for 'keypress' event to handle Enter key press
-document.addEventListener('keypress', function(event) {
-  // Check if the pressed key is Enter (key code 13 or 'Enter') and if the focus is on the checkBtn
-  if ((event.key === 'Enter' || event.keyCode === 13)) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-    
-    // Call the checkWord function
+checkBtn.addEventListener('click', function () {
+  if (inputField.value !== '') {
     checkWord();
   }
+ });
+
+
+// Add an event listener to the document for 'keypress' event to handle Enter key press
+let enterPressed = 0;
+
+document.addEventListener('keypress', function(event) {
+  if ((event.key === 'Enter' || event.keyCode === 13)) {
+    event.preventDefault();
+
+    if (inputField.value === '') {
+      return;
+    }
+
+    enterPressed++;
+
+    if (enterPressed === 2) {
+      checkWord();
+      window.location.reload();
+      enterPressed = 0;
+    } else {
+      checkWord();
+    }
+  }
 });
+
 
 closeBtn.addEventListener("click", () => {
   backdrop.style.visibility = "hidden";
