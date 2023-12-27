@@ -62,14 +62,26 @@ const checkWord = () => {
     return;
   } else {
     backdrop.style.visibility = "visible";
-    modalContent.innerText = `Təbriklər! <b>${userWord.toUpperCase()}</b> doğru sözdür`;
+    modalContent.innerText = `Təbriklər! ${userWord.toUpperCase()} doğru sözdür`;
     clearInterval(timer);
   }
   initGame();
 };
 
 refreshBtn.addEventListener("click", initGame);
-checkBtn.addEventListener("click", checkWord);
+checkBtn.addEventListener('click', checkWord);
+
+// Add an event listener to the document for 'keypress' event to handle Enter key press
+document.addEventListener('keypress', function(event) {
+  // Check if the pressed key is Enter (key code 13 or 'Enter') and if the focus is on the checkBtn
+  if ((event.key === 'Enter' || event.keyCode === 13)) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    
+    // Call the checkWord function
+    checkWord();
+  }
+});
 
 closeBtn.addEventListener("click", () => {
   backdrop.style.visibility = "hidden";
